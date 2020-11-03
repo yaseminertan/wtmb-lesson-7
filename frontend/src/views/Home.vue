@@ -14,13 +14,13 @@ export default {
     // })
   },
   methods:{
-    ...mapActions(['incrementCounter'])
+    ...mapActions(['fetchMeetups'])
     // ...mapActions({
     //   incrementCounter:'incrementCounter'
     // })
   },
   created(){
-    this.incrementCounter()
+    this.fetchMeetups()
   }
 }
 </script>
