@@ -3,36 +3,27 @@
 import MeetupCard from '@/components/meetup-card.vue'
 import {mapState,mapActions} from 'vuex'
 export default {
-  name: 'Home',
+  name: 'Meetup',
   components: {
     MeetupCard
   },
   computed:{
-    ...mapState(['counter','meetups'])
-    // ...mapState({
-    //   counter:(state)=>state.counter
-    // })
+    ...mapState(['meetup'])
+    
   },
   methods:{
-    ...mapActions(['fetchMeetups','incrementCounter'])
-    // ...mapActions({
-    //   incrementCounter:'incrementCounter'
-    // })
+    ...mapActions(['fetchMeetup'])
+    
   },
   created(){
-    this.fetchMeetups()
+    this.fetchMeetup(this.$route.params.id)
   }
 }
 </script>
 
 <template lang='pug'>
-  main
-    section
-      button.increment-button(@click="incrementCounter") Increment
-      div {{counter}}
-    section
-      meetup-card(v-for="meetup in meetups",:meetup="meetup")
-    
+  section
+      meetup-card(:meetup="meetup")
 </template>
 
 <style scoped>
