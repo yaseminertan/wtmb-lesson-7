@@ -1,20 +1,20 @@
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import MeetupCard from '@/components/meetup-card.vue'
 import {mapState,mapActions} from 'vuex'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    MeetupCard
   },
   computed:{
-    ...mapState(['counter'])
+    ...mapState(['counter','meetups'])
     // ...mapState({
     //   counter:(state)=>state.counter
     // })
   },
   methods:{
-    ...mapActions(['fetchMeetups'])
+    ...mapActions(['fetchMeetups','incrementCounter'])
     // ...mapActions({
     //   incrementCounter:'incrementCounter'
     // })
@@ -27,8 +27,10 @@ export default {
 
 <template lang='pug'>
   main
-    h1 The number of the items is {{counter}}
-    h2 hellooo
+    h1 The number of the items is {{meetups.length}}
+    button(@click="incrementCounter") Increment
+        div {{counter}}
+    meetup-card(v-for="meetup in meetups",:meetup="meetup")
 </template>
 
 

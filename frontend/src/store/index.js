@@ -6,21 +6,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    counter:0
+    counter:0,
+    meetups:[]
   },
   mutations: {
     setCounter(state,newCount){
       state.counter=newCount
-    }
+    },
+    setMeetups(state,data){
+      state.meetups=data
+    },
   },
   actions: {
     incrementCounter({commit,state}){
       const newCount=state.counter+1
       commit('setCounter',newCount)
     },
-    async fetchMeetups(){
+    async fetchMeetups({commit}){
       const result=await axios.get('http://localhost:3001/meetup/all/json')
-      console.log(result)
+      commit('setMeetups',result.data)
     }
   },
   modules: {
